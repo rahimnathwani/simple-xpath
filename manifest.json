@@ -1,0 +1,24 @@
+{
+  "name": "Simple Xpath",
+  "version": "1.0",
+  "description": "Just to perform two important things: lookup the xpath of an element and search for keyword in existing DOM.",
+  "browser_action": {
+    "default_icon": "icon.gif"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["inject.js"]
+    }
+  ],
+  "permissions": [
+    "http://*/*",
+    "https://*/*",
+	"contextMenus",
+	"tabs"
+  ],
+  "icons": {
+    "16": "icon.gif"
+  },
+  "background_page": "background.html"
+}
