@@ -1,7 +1,7 @@
 /**
  * Injects into web page and listen to specific on click events on elements.
  */
-console.log('Loaded DOM Inspector+ script');
+console.log('Loaded Simple xpath script');
 
 var currentEvent = null;
 var elementEvent = null;
@@ -37,7 +37,7 @@ function getxpath() {
   var xpath = '';
   var node = elementEvent;
   while (node) {
-	if (node == document.documentElement) {
+    if (node == document.documentElement) {
       return xpath;
     }
     // some workaround to find an actual index
@@ -56,9 +56,11 @@ function getxpath() {
         }
         iter++;
       }
-    }
+    } else {
+      index = 1; // body always has index 1
+	}
     // build xpath for current node
-    xpath = '/' + node.tagName + '[' + index + ']' + xpath;
+    xpath = '/' + node.tagName.toLowerCase() + '[' + index + ']' + xpath;
 
     node = node.parentNode;
   }

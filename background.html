@@ -6,13 +6,18 @@
 </head>
 <body>
 	<script type="text/javascript">
-	var parent = chrome.contextMenus.create({"title": "DOM Inspector+", "contexts":["all"]});
+	var parent = chrome.contextMenus.create({"title": "Simple xpath", "contexts":["all"]});
 	// Sends request to injected script and gets xpath for element.
 	// An element identifies by coords from mouse sent to script.
-	chrome.contextMenus.create({"title":"Copy xpath", "contexts":["all"], "parentId":parent, "onclick":function() {
+	chrome.contextMenus.create({"title":"Copy to clipboard", "contexts":["all"], "parentId":parent, "onclick":function() {
 	  chrome.tabs.getSelected(null, function(tab) {
 	    chrome.tabs.sendRequest(tab.id, {action: "getxpath"}, function(response) {
           console.log('Got response with xpath: ' + response.xpath);
+          var notification = webkitNotifications.createNotification(
+            'icon.gif',
+            response.xpath,
+            ''
+		  ).show();
 	    });
 	  });
 	}});
